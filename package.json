@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "native-base": "^3.4.25"
+  },
+  "devDependencies": {
+    "prettier-plugin-prisma": "^4.10.0"
   }
 }
