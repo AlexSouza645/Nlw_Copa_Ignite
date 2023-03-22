@@ -9,7 +9,7 @@ interface HomeProps{
 export default function Home(props: HomeProps) {
 
   return (
-    <h1>Contagem :{props.count}</h1>
+    <h1> Nova Contagem :{props.count}</h1>
   )
 }
 
