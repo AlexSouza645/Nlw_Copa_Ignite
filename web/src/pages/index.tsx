@@ -1,7 +1,5 @@
-// import '../styles/global.css'
-
-interface HomeProps{
-  count:number;
+interface HomeProps {
+  count: number;
 }
 
 
@@ -10,7 +8,7 @@ interface HomeProps{
 export default function Home(props: HomeProps) {
 
   return (
-    <h1 className="text-violet-600" font-bold text-4xl> Nova Contagem :{props.count}</h1>
+    <h1 className="text-violet-400 font-bold text-4xl"> Nova Contagem :{props.count}</h1>
   )
 }
 
