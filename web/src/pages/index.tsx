@@ -1,30 +1,40 @@
-interface HomeProps {
-  count: number;
-}
+// import '../styles/style.css';
 
 
+// interface HomeProps {
+//   count: number;
+// }
+
+import appPreviewImage from '../assets/app-nlw-copa.png'
 
 
-export default function Home(props: HomeProps) {
+export default function Home( ) {
 
   return (
-    <h1 className="text-violet-400 font-bold text-4xl"> Nova Contagem :{props.count}</h1>
+    <div>
+      <main>
+
+      </main>
+      <img src=" " alt="" />
+    </div>
   )
 }
 
 
-// camada do next usao no backend
-export const getServerSideProps = async () => {
-  const response = await fetch('http://localhost:3333/pools/count')
-  const data = await response.json()
-  // .then(response => response.json())
-  // .then(data => {
-  console.log(data)
 
-  return {
-    props: {
-      count: data.count,
-    }
-  }
 
-}
+// // camada do next usao no backend
+// export const getServerSideProps = async () => {
+//   const response = await fetch('http://localhost:3333/pools/count')
+//   const data = await response.json()
+//   // .then(response => response.json())
+//   // .then(data => {
+//   // console.log(data)
+
+//   return {
+//     props: {
+//       count: data.count,
+//     }
+//   }
+
+// }
