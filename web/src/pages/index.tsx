@@ -19,7 +19,23 @@ export default function Home() {
         <Image src={logoImage} alt='logo do app Nlw Copa' />
         <h1 className='bg-white'>Crie seu próprio bolão da Copa, e compartilhe com os amigos </h1>
   <div>
-    <Image src={usersAvatar} alt='imagme de avatares de usuários'/>
+    <Image src={usersAvatar} alt='imagem de avatares de usuários'/>
+
+    <strong>
+      <span>
+        +12.592
+      </span>pessoas já estão usando
+    </strong>
+
+    <form >
+      <input type="text" required placeholder='Qual o nome do seu bolão ' />
+      <button type='submit'>Criar meu bolão </button>
+    </form>
+
+
+    <p>
+      Após criar seu bolão, você receberá um código único que poderá usar para convidar outras pesoas 
+    </p>
   </div>
       </main>
       <Image
