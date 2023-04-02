@@ -24,21 +24,25 @@ export default function Home() {
         <div className='mt-10 flex items-center gap-2'>
           <Image src={usersAvatar} alt='imagem de avatares de usuários' />
 
-          <strong>
-            <span>
+          <strong className='text-gray-100 text-xl'>
+            <span className='text-ignite-500'>
               +12.592
             </span>pessoas já estão usando
           </strong>
 
-          <form >
-            <input type="text" required placeholder='Qual o nome do seu bolão ' />
-            <button type='submit'>Criar meu bolão </button>
-          </form>
+          <div className='mt-10'>
+            <form className='flex'>
+              <input className='flex-1'
+                type="text"
+                required placeholder='Qual o nome do seu bolão b' />
+              <button className='bg-yellow-500' type='submit'>Criar meu bolão </button>
+            </form>
 
 
-          <p>
-            Após criar seu bolão, você receberá um código único que poderá usar para convidar outras pesoas
-          </p>
+            <p className='mt-4'>
+              Após criar seu bolão, você receberá um código único que poderá usar para convidar outras pesoas
+            </p>
+          </div>
 
           <div>
             <div>
