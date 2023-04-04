@@ -29,7 +29,7 @@ export default function Home() {
             <span className='text-ignite-500'>
               +12.592
             </span>pessoas já estão usando
-          </strong> 
+          </strong>
         </div>
 
         <div className='mt-10 '>
@@ -42,23 +42,27 @@ export default function Home() {
 
 
           <p className='mt-4 text-sm text-gray-300 leading-relaxed'>
-            Após criar seu bolão, você receberá um código único que poderá usar para convidar outras pesoas
+            Após criar seu bolão, você receberá um código único que poderá usar para convidar outras pessoas 🚀
           </p>
         </div>
 
-        <div className='mt-10 pt-10'>
-          <div>
+        <div className='mt-10 pt-10 border-t border-gray-600  flex items-center justify-between text-gray-100'>
+          <div className='flex items-center gap-6 '>
             <Image src={iconCheckImage} alt='' />
-            <div>
-              <span className='text-white'>+2.034</span>
-              <span className='text-white'>Bolões criados</span>
+            <div className='flex flex-col'>
+              <span className='font-bold text-2xl'>+2.034</span>
+              <span className=''>Bolões criados</span>
             </div>
           </div>
 
-          <div>
+          <div className='w-px h-14 bg-gray-600'>
+
+          </div>
+
+          <div className='flex items-center gap-6'>
             <Image src={iconCheckImage} alt='' />
-            <div>
-              <span className='text-white'>+192.847</span>
+            <div className='flex flex-col'>
+              <span className='font-bold text-2xl'>+192.847</span>
               <span className='text-white'>Palpites enviados</span>
             </div>
           </div>
