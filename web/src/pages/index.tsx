@@ -1,17 +1,18 @@
 // import '../styles/style.css';
 
 
-// interface HomeProps {
-//   count: number;
-// }
 import Image from 'next/image'
 import appPreviewImage from '../assets/app-nlw-copa.png'
 import logoImage from '../assets/logo.svg'
 import usersAvatar from '../assets/avatares.png'
 import iconCheckImage from '../assets/icon-check.svg'
+import { api } from '../lib/axios'
 
+interface HomeProps {
+  poolCount: number;
+}
 
-export default function Home() {
+export default function Home(props: HomeProps) {
 
   return (
     <div className='max-w-[1124px] mx-auto h-screen grid grid-cols-2  gap-28 items-center'>
@@ -50,7 +51,7 @@ export default function Home() {
           <div className='flex items-center gap-6 '>
             <Image src={iconCheckImage} alt='' />
             <div className='flex flex-col'>
-              <span className='font-bold text-2xl'>+2.034</span>
+              <span className='font-bold text-2xl'> + {props.poolCount} </span> {/*  chamada feita no backend*/}
               <span className=''>Bolões criados</span>
             </div>
           </div>
@@ -80,18 +81,18 @@ export default function Home() {
 
 
 
-// // camada do next usao no backend
-// export const getServerSideProps = async () => {
-//   const response = await fetch('http://localhost:3333/pools/count')
-//   const data = await response.json()
-//   // .then(response => response.json())
-//   // .then(data => {
-//   // console.log(data)
+// camada do next usao no backend
+export const getServerSideProps = async () => {
+  const response = await api.get('pools/count')
+  // const data = await response.json()
+  // .then(response => response.json())
+  // .then(data => {
+  // console.log(data)
 
-//   return {
-//     props: {
-//       count: data.count,
-//     }
-//   }
+  return {
+    props: {
+      poolCount: response.data.count,
+    }
+  }
 
-// }
+}
