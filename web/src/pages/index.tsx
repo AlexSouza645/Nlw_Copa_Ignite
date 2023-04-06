@@ -7,12 +7,20 @@ import logoImage from '../assets/logo.svg'
 import usersAvatar from '../assets/avatares.png'
 import iconCheckImage from '../assets/icon-check.svg'
 import { api } from '../lib/axios'
+import { FormEvent } from 'react'
 
 interface HomeProps {
   poolCount: number;
+  guessCount: number;
+  userCount: number;
 }
 
 export default function Home(props: HomeProps) {
+
+  // criar uma função onSubmit para o form 
+  function createPool(event: FormEvent) {
+    event.preventDefault()
+  }
 
   return (
     <div className='max-w-[1124px] mx-auto h-screen grid grid-cols-2  gap-28 items-center'>
@@ -28,14 +36,14 @@ export default function Home(props: HomeProps) {
 
           <strong className='text-gray-100 text-xl'>
             <span className='text-ignite-500'>
-              +12.592
+              +{props.userCount}
             </span>pessoas já estão usando
           </strong>
         </div>
 
         <div className='mt-10 '>
-          <form className='flex gap-2'>
-            <input className='flex-1 px-6 py-4 rounded bg-gray-800 border border-gray-600 text-sm'
+          <form onSubmit={createPool} className='flex gap-2'>
+            <input className='flex-1 px-6 py-4 rounded bg-gray-800 border border-gray-600 text-sm text-gray-100'
               type="text"
               required placeholder='Qual o nome do seu bolão ' />
             <button className='bg-yellow-500 px-6 py-4 rounded text-gray-900 font-bold text-sm uppercase hover:bg-yellow-700' type='submit'>Criar meu bolão </button>
@@ -63,7 +71,7 @@ export default function Home(props: HomeProps) {
           <div className='flex items-center gap-6'>
             <Image src={iconCheckImage} alt='' />
             <div className='flex flex-col'>
-              <span className='font-bold text-2xl'>+192.847</span>
+              <span className='font-bold text-2xl'>+{props.guessCount}</span>
               <span className='text-white'>Palpites enviados</span>
             </div>
           </div>
@@ -83,7 +91,14 @@ export default function Home(props: HomeProps) {
 
 // camada do next usao no backend
 export const getServerSideProps = async () => {
-  const response = await api.get('pools/count')
+
+  const [poolCountResponse, guessCountResponse, userCountResponse] = await Promise.all([
+    api.get('pools/count'),
+    api.get('guesses/count'),
+    api.get('users/count')
+  ])
+
+
   // const data = await response.json()
   // .then(response => response.json())
   // .then(data => {
@@ -91,7 +106,9 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      poolCount: response.data.count,
+      poolCount: poolCountResponse.data.count,
+      guessCount: guessCountResponse.data.count,
+      userCount: userCountResponse.data.count,
     }
   }
 
