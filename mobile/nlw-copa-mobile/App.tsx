@@ -1,7 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 
 // import { StyleSheet, View } from 'react-native';
-import { NativeBaseProvider, Text, VStack, Center } from 'native-base';
+import { NativeBaseProvider, StatusBar } from 'native-base';
 import { THEME } from './src/styles/theme';
 import { useFonts, Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from '@expo-google-fonts/roboto';
 
@@ -15,14 +15,16 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-  
-        {
-          fontsLoaded ? <SignIn /> : <Loading/>
-        }
-      
+      <StatusBar barStyle="light-content" backgroundColor='transparent' translucent/>
+      {
+        fontsLoaded ? <SignIn /> : <Loading />
+      }
+
     </NativeBaseProvider>
 
+
   );
+
 }
 
 // const styles = StyleSheet.create({
