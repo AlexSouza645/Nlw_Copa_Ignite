@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.11.0",
-    "native-base": "^3.4.28"
+    "native-base": "^3.4.28",
+    "react-native-svg": "^13.9.0"
   }
 }
