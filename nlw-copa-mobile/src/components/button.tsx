@@ -34,31 +34,20 @@ export function Button({ title, type = 'PRIMARY', ...rest }: Props) {
             {...rest}>
 
 
-<Center>
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-          {/* Aqui você pode adicionar o ícone */}
-          <Text>Ícone</Text>
-          {/* Aqui você adiciona o texto */}
-          <Text
-            fontSize='sm'
-            fontFamily='heading'
-            color={type === 'SECONDARY' ? 'white' : 'black'}
-            justifyContent={'center'}
-          >
-            {title}
-          </Text>
-        </View>
-      </Center>
-                {/* <Center><Text
-                fontSize='sm'
-                fontFamily='heading'
-                color={type === 'SECONDARY' ? 'white' : 'black'}
-                justifyContent={'center'}
+            <Center>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text
+                        fontSize='sm'
+                        fontFamily='heading'
+                        color={type === 'SECONDARY' ? 'white' : 'black'}
 
 
 
-            />{title}</Center> */}
-            
+
+                    >{title} </Text>
+                </View>
+            </Center>
+
 
 
         </ButtonNativeBase >
