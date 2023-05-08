@@ -19,10 +19,11 @@ export const AuthContext = createContext({} as AuthContextDataProps)
 
 //criar uyma função que prove o contexto criado
 
-export function AuthContextProvider({ children }:AuthProviderProps) {
+export function AuthContextProvider({ children }: AuthProviderProps) {
 
 
     async function signIn() {
+        console.log('vamos logar')
     }
     return (
         <AuthContext.Provider value={{
