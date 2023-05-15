@@ -13,7 +13,7 @@ interface UserProps {
 
 // tipar a interface 
 interface AuthProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export interface AuthContextDataProps {
