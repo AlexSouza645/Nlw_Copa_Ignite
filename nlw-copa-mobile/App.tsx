@@ -6,7 +6,7 @@ import { THEME } from './src/styles/theme';
 import { useFonts, Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from '@expo-google-fonts/roboto';
 
 // importar  componentes
-import { Loading } from './src/components/loading';
+import { Loading } from './src/components/Loading';
 import { New } from './src/screens/New';
 import { AuthContextProvider } from './src/contexts/authContext';
 
