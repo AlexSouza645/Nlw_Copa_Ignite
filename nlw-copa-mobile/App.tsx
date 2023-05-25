@@ -9,6 +9,7 @@ import { useFonts, Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from '@
 import { Loading } from './src/components/Loading';
 import { New } from './src/screens/New';
 import { AuthContextProvider } from './src/contexts/authContext';
+import { Find } from './src/screens/Find';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold })
@@ -23,7 +24,7 @@ export default function App() {
         backgroundColor='transparent' 
         translucent />
         {
-          fontsLoaded ? <New /> : <Loading />
+          fontsLoaded ? <Find /> : <Loading />
         }
       </AuthContextProvider>
     </NativeBaseProvider>
