@@ -7,7 +7,7 @@ import { Button } from "../components/Button";
 export function New() {
 
     return (
-        <VStack flex={1} bg="gray.900"  >
+        <VStack flex={1} bg="gray.900" >
 
             <Header title="Criar novo bolão" />
             <VStack mt={8} mx={5} alignItems="center" >
@@ -17,7 +17,7 @@ export function New() {
                 </Heading>
 
                 <Input
-                    mb={2}
+                    mb={2}  
                     placeholder="Qual o nome do seu bolão?"
                 />
 
