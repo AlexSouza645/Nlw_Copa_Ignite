@@ -7,9 +7,9 @@ import { useFonts, Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from '@
 
 // importar  componentes
 import { Loading } from './src/components/Loading';
-import { New } from './src/screens/New';
+import { Pools } from './src/screens/Pools';
 import { AuthContextProvider } from './src/contexts/authContext';
-import { Pools} from './src/screens/Pools';
+// import { New} from './src/screens/New';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold })
