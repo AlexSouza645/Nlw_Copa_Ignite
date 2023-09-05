@@ -1,11 +1,11 @@
 import { VStack, Icon  } from "native-base";
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
-import {Octicons} from '@expo/vector-icons';
+import {Octicons} from '@expo/vector-icons';//importação do icone de lupa
 
 
 
-export function Pools() {
+export function Pools() { 
 
 
     return (
