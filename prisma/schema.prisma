@@ -15,68 +15,69 @@ datasource db {
 }
 
 model pool {
-  id           String         @id @default(cuid())
-  title        String
-  code         String         @unique //codigo unico
-  createdAt    DateTime       @default(now())
+  id        String   @id @default(cuid())
+  title     String
+  code      String   @unique //codigo unico
+  createdAt DateTime @default(now())
   // participants participants[]
 
-  // // todo bolao vai ter um dono
-  // owner  user?   @relation(fields: [userId], references: [id])
-  // userId String?
+  // todo bolao vai ter um dono
+  owner        user?          @relation(fields: [userId], references: [id])
+  userId       String?
+  participants participants[]
 }
 
-// // tabela do usuario
-// model user {
-//   id        String   @id @default(cuid())
-//   name      String
-//   email     String   @unique
-//   avatarUrl String?
-//   createdAt DateTime @default(now())
+// tabela do usuario
+model user {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  avatarUrl String?
+  createdAt DateTime @default(now())
 
-//   //  um mesmo usuario pode ser participante de varios boloes
-//   participatingAt participants[]
-//   ownPools        pool[]
-// }
+  //  um mesmo usuario pode ser participante de varios boloes
+  participatingAt participants[]
+  ownPools        pool[]
+}
 
-// // tabela de jogos
-// model games {
-//   id                    String   @id @default(cuid())
-//   date                  DateTime
-//   firstTeamCountryCode  String
-//   secondTeamCountryCode String
-//   // relacionamento inverso um game sempre tera varios palpites
-//   guesses               Guess[]
-// }
+// tabela de jogos
+model games {
+  id                    String   @id @default(cuid())
+  date                  DateTime
+  firstTeamCountryCode  String
+  secondTeamCountryCode String
+  //relacionamento inverso um game sempre tera varios palpites
+  guesses               Guess[]
+}
 
-// // tabela de palpite
-// model Guess {
-//   id              String   @id @default(cuid())
-//   firstTeamPoint  Int
-//   secondTeamPoint Int
-//   createdAt       DateTime @default(now())
-//   gamesId         String
-//   participantsId  String
+// tabela de palpite
+model Guess {
+  id              String   @id @default(cuid())
+  firstTeamPoint  Int
+  secondTeamPoint Int
+  createdAt       DateTime @default(now())
+  gamesId         String
+  participantsId  String
 
-//   //  relacionamentos
+  //  relacionamentos
 
-//   game games @relation(fields: [gamesId], references: [id])
+  game games @relation(fields: [gamesId], references: [id])
 
-//   // oo palpite sempre sera feito por um participante
-//   participant participants @relation(fields: [participantsId], references: [id])
-// }
+  // oo palpite sempre sera feito por um participante
+  participant participants @relation(fields: [participantsId], references: [id])
+}
 
-// //  tabela de participantes
-// model participants {
-//   id      String  @id @default(cuid())
-//   guesses Guess[]
-//   User    user    @relation(fields: [userId], references: [id])
-//   userId  String
+//  tabela de participantes
+model participants {
+  id      String  @id @default(cuid())
+  guesses Guess[]
+  User    user    @relation(fields: [userId], references: [id])
+  userId  String
 
-//   // todo participante vai estar associado a um bolao
-//   pool   pool   @relation(fields: [poolId], references: [id])
-//   poolId String
+  // todo participante vai estar associado a um bolao
+  pool   pool   @relation(fields: [poolId], references: [id])
+  poolId String
 
-//   //informar ao banco de dados que se eu procurar um usuario ou bolao ssó irei encontrar um registro
-//   @@unique([userId, poolId])
-// }
+  //informar ao banco de dados que se eu procurar um usuario ou bolao ssó irei encontrar um registro
+  @@unique([userId, poolId])
+}
