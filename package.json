@@ -10,10 +10,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^10.4.0",
+    "prisma": "^5.4.1",
+    "prisma-erd-generator": "^1.11.1",
     "tsx": "^3.13.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@fastify/cors": "^8.4.0",
+    "@prisma/client": "^5.4.1",
     "fastify": "^4.23.2"
   }
 }
