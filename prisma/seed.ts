@@ -63,7 +63,7 @@ async function main() {
                                 userId: user.id,
                                 poolId: pool.id
                             }
-                        }
+                         }
                     }
                 }
             }

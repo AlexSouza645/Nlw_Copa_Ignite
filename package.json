@@ -9,6 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "prisma":{"seed":"tsx prisma/seed.ts"},
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^10.4.0",
     "prisma": "^5.4.1",
