@@ -5,6 +5,7 @@ import { authRoutes } from "./routes/auth";
 import { gamesRoutes } from "./routes/game";
 import { guessRoutes } from "./routes/guess";
 import { userRoutes } from "./routes/user";
+import jwt from "@fastify/jwt"
 
 async function bootstrap() {
     const fastify = Fastify({
@@ -14,12 +15,19 @@ async function bootstrap() {
         origin: true,
     })
 
-//registers
-await fastify.register(poolRoutes)
-await fastify.register(authRoutes)
-await fastify.register(gamesRoutes)
-await fastify.register(guessRoutes)
-await fastify.register(userRoutes)
+    ''
+    // utilização do jwt
+    await fastify.register(jwt,{
+        secret:'nlwCopa',
+    })
+    //  em produção isso precisa ser em uma variavel ambiente
+
+    //registers
+    await fastify.register(poolRoutes)
+    await fastify.register(authRoutes)
+    await fastify.register(gamesRoutes)
+    await fastify.register(guessRoutes)
+    await fastify.register(userRoutes)
 
 
 

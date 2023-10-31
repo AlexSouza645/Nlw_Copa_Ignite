@@ -5,7 +5,13 @@ import { z } from "zod"
 
 export async function authRoutes(fastify: FastifyInstance) {
 
-    fastify.post("/users", async (request) => {
+    // criar uma rota de usuarios logados 
+    fastify.get("/me", async (request) => {
+        await request.jwtVerify()
+        return { user: request.user }
+    })
+
+    fastify.post("/users", async (request) => { 
         const createUserBody = z.object({
             access_token: z.string()
         })
@@ -43,16 +49,29 @@ export async function authRoutes(fastify: FastifyInstance) {
             user = await prisma.user.create({
 
                 data: {
-                    googleID: userInfo.id,
+                    googleId: userInfo.id,
                     name: userInfo.name,
                     email: userInfo.email,
                     avatarUrl: userInfo.picture,
                 }
             })
         }
-        return { userInfo }
+
+        // //  criar uma rota de auth para o usuario
+        const token = fastify.jwt.sign({
+            name: user.name,
+            avatarUrl: user.avatarUrl
+
+        }, {
+            sub: user.id,//sub quem gerou o token 
+            expiresIn: "1 days"
+
+        })
+
+
+        return { token }
 
     })
 
 
-}
+} 
