@@ -2,10 +2,11 @@ import { FastifyInstance } from "fastify"
 import { prisma } from "../lib/prisma"
 import ShortUniqueId from "short-unique-id"
 import { z } from "zod"
+import  "@fastify/jwt";
 
 
 
-export async function poolRoutes(fastify:FastifyInstance){
+export async function poolRoutes(fastify: FastifyInstance) {
     fastify.get('/pools/count', async () => {
         const count = await prisma.pool.count({
 
@@ -13,8 +14,8 @@ export async function poolRoutes(fastify:FastifyInstance){
         return { count }
     })
 
-      //  segunda rota
-      fastify.post('/pools', async (request, reply) => {// requisição e resposta
+    //  segunda rota
+    fastify.post('/pools', async (request, reply) => {// requisição e resposta
 
         const createPoolBody = z.object({
             title: z.string(),
@@ -26,19 +27,45 @@ export async function poolRoutes(fastify:FastifyInstance){
         const generate = new ShortUniqueId({ length: 6 });
         const code = generate.randomUUID(); // Use o método randomUUID() para gerar um ID aleatório.
 
-        const uppercaseCode = code.toUpperCase();
+        // let ownerId = null;
+        try {
+
+            await request.jwtVerify()
+            await prisma.pool.create({
+                data: {
+                    title,
+                    code,
+                    userId: request.user.sub,
 
 
-        await prisma.pool.create({
-            data: {
-                title,
-                code
-            }
+                    participants: {
+                        create: {
+                            userId: request.user.sub
+                        }
+                    }
+                }
 
 
-        })
+            })
 
-        return reply.status(201).send({ uppercaseCode })
+            // chegar aqui
+        } catch {
+            await prisma.pool.create({
+                data: {
+                    title,
+                    code
+                }
+
+
+            })
+            const uppercaseCode = code.toUpperCase();
+            return reply.status(201).send({ uppercaseCode })
+        }
+
+
+
+
+
 
     })
 
