@@ -2,7 +2,8 @@ import { FastifyInstance } from "fastify"
 import { prisma } from "../lib/prisma"
 import ShortUniqueId from "short-unique-id"
 import { z } from "zod"
-import  "@fastify/jwt";
+import "@fastify/jwt";
+import { authenticate } from "../plugins/atuthenticate";
 
 
 
@@ -61,6 +62,18 @@ export async function poolRoutes(fastify: FastifyInstance) {
             const uppercaseCode = code.toUpperCase();
             return reply.status(201).send({ uppercaseCode })
         }
+
+
+        //rota para entrar em um bolao
+        fastify.post('/pools/:id/join',
+            { onRequest: [authenticate] },
+            (request, reply) => { 
+                const joinPoolBody=z.object({
+                    code:z.string()
+                })
+                const{code}= joinPoolBody.parse(request.body)
+            })
+
 
 
 
