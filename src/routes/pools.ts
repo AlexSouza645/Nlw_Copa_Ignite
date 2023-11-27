@@ -65,7 +65,7 @@ export async function poolRoutes(fastify: FastifyInstance) {
 
 
         //rota para entrar em um bolao
-        fastify.post('/pools/:id/join',
+        fastify.post('/pools/join',
             { onRequest: [authenticate] },
             async (request, reply) => {
                 const joinPoolBody = z.object({
@@ -85,9 +85,36 @@ export async function poolRoutes(fastify: FastifyInstance) {
                             userId: request.user.sub
                         }
                     }
+                },
+                include: {
+                    _count: {
+                        select: {
+                            participants: true
+                        }
+                    }, participants: {
+
+                        select: {
+                            //  mostrar o numero de participantes
+                            id: true,
+
+                            User: {
+                                select: {
+                                    avatarUrl: true
+                                }
+                            }
+
+                        },
+                        take: 4
+                    }
+                    , owner: {
+                        select: {
+                            name: true,
+                            id: true
+                        }
+                    }
                 }
             })
-            return(pools)
+            return (pools)
         })
 
 
@@ -134,5 +161,50 @@ export async function poolRoutes(fastify: FastifyInstance) {
 
         })
         return reply.status(201).send()
+    })
+
+    // criar rota para buscar detalhes de um unico usuario
+    fastify.get('/pools/:id', {
+        onRequest: [authenticate]
+    }, async (request) => {
+        const getPoolsParams = z.object({
+            id: z.string()
+        })
+
+       const {id}= getPoolsParams.parse(request.params)
+
+       const pool = await prisma.pool.findUnique({
+                where: {
+                    id,
+                },
+                include: {
+                    _count: {
+                        select: {
+                            participants: true
+                        }
+                    }, participants: {
+
+                        select: {
+                            //  mostrar o numero de participantes
+                            id: true,
+
+                            User: {
+                                select: {
+                                    avatarUrl: true
+                                }
+                            }
+
+                        },
+                        take: 4
+                    }
+                    , owner: {
+                        select: {
+                            name: true,
+                            id: true
+                        }
+                    }
+                }
+            })
+            return (pool )
     })
 }
