@@ -41,17 +41,65 @@ export async function guessRoutes(fastify: FastifyInstance) {
 
         })
 
-        if (!participant){
+        if (!participant) {
             return reply.status(400).send({
-                message:"you're not allowed to create a guess inside this pool"
+                message: "you're not allowed to create a guess inside this pool"
             })
         }
-        return {
-            poolId,
-            gameId,
-            firstTeamPoints,
-            secondTeamPoints
+
+        const guess = await prisma.guess.findUnique({
+            where: {
+                participantsId_gamesId: {
+                    participantsId: participant.id,
+                    gamesId: gameId
+
+                }
+            }
+        })
+        if (guess) {
+            return reply.status(400).send({
+                message: "you already sent a guess to this game on this pool "
+            })
         }
 
+        const game = await prisma.games.findUnique({
+            where: {
+                id: gameId,
+            }
+        })
+
+        if (!game) {
+            return reply.status(400).send({
+                message: "game not found "
+            })
+        }
+
+        if (game.date < new Date()) {
+            return reply.status(400).send({
+                message: " you cannot send guesses after the game date    "
+            })
+        }
+
+        // se todas as validações passaram sera criado um novo palpite
+        await prisma.guess.create({
+            data:{
+                gamesId : game.id,
+                participantsId: participant.id,
+                secondTeamPoint: secondTeamPoints,
+                firstTeamPoint :firstTeamPoints,
+
+            }
+        })
+        
+        
+        
+        
+        
+        
+        
+        return reply.status(201).send()
+
+
     })
+
 }

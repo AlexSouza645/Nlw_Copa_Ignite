@@ -66,6 +66,8 @@ model Guess {
 
   // oo palpite sempre sera feito por um participante
   participant participants @relation(fields: [participantsId], references: [id])
+
+  @@unique([participantsId, gamesId])
 }
 
 //  tabela de participantes
