@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { New } from '../screens/New';
 import { Pools } from '../screens/Pools';
+import { Find } from '../screens/Find';
 import { PlusCircle, SoccerBall } from 'phosphor-react-native'
 import { useTheme } from 'native-base';
 import { Platform } from 'react-native';
@@ -16,7 +17,7 @@ export function AppRoutes() {
 
         <Navigator screenOptions={{
             headerShown: false,
-            tabBarLabelPosition:'beside-icon',
+            tabBarLabelPosition: 'beside-icon',
             tabBarActiveTintColor: colors.yellow[500],
             tabBarInactiveTintColor: colors.gray[300],
             // estilização da barra de navegacao
@@ -27,9 +28,9 @@ export function AppRoutes() {
                 backgroundColor: colors.gray[800]
             },
             // estilizar os itens da barra
-            tabBarItemStyle:{
-                position:'relative',
-                top:Platform.OS ==='android' ? -10 : 0
+            tabBarItemStyle: {
+                position: 'relative',
+                top: Platform.OS === 'android' ? -10 : 0
             }
         }}>
             <Screen
@@ -37,9 +38,9 @@ export function AppRoutes() {
                 name='new'
                 component={New}
                 options={{
-                    tabBarIcon: ({ color }) => <PlusCircle color={color} size={size} 
+                    tabBarIcon: ({ color }) => <PlusCircle color={color} size={size}
                     />,
-                    tabBarLabel:'Novo Bolão '
+                    tabBarLabel: 'Novo Bolão '
                 }}
 
 
@@ -51,9 +52,19 @@ export function AppRoutes() {
                 name='Pools'
                 component={Pools}
                 options={{
-                    tabBarIcon: () => <SoccerBall 
-                    size={size}  />,
-                    tabBarLabel:'Meus Bolões '
+                    tabBarIcon: () => <SoccerBall
+                        size={size} />,
+                    tabBarLabel: 'Meus Bolões '
+                }}
+
+            />
+
+            <Screen
+
+                name='Find'
+                component={Find}
+                options={{ tabBarButton:( )=> null
+                  
                 }}
 
             />
