@@ -45,26 +45,21 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     async function signIn() {
         // console.log('vamos logar')
 
-        try {
-            setIsUserLoading(true)
-            await promptAsync()
-
-
-        } catch (error) {
-            console.log(error)
-            throw error
-
-        } finally { setIsUserLoading(false) }
     }
 
     async function signInWithGoogle(access_token: string) {
 
         // console.log('token de autenticação ===>', access_token)
         try {
-
-        } catch {
+            setIsUserLoading(true)
+            const response = await api.post('/users', { access_token });
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+            throw (error)
 
         } finally {
+            setIsUserLoading(false)
 
         }
 

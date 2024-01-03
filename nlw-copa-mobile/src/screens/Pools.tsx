@@ -1,5 +1,5 @@
 import { VStack, Icon } from "native-base";
-import { Button } from "../components/Button";
+import { Button } from "../components/button";
 import { Header } from "../components/Header";
 import { Octicons } from '@expo/vector-icons';//importação do icone de lupa
 import { useNavigation } from "@react-navigation/native";
