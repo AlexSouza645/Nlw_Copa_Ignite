@@ -44,6 +44,17 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
 
     async function signIn() {
         // console.log('vamos logar')
+        try {
+            setIsUserLoading(true)
+            await promptAsync()
+        } catch (error) {
+            console.log(error)
+            throw error
+
+        } finally {
+            setIsUserLoading(false)
+        }
+
 
     }
 
@@ -52,13 +63,18 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
         // console.log('token de autenticação ===>', access_token)
         try {
             setIsUserLoading(true)
-            const response = await api.post('/users', { access_token });
-            console.log(response.data)
-        } catch (error) {
+            const tokenResponse = await api.post('/users', { access_token });
+            // console.log(response.data)
+            api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data.token}`
+            const userInfoResponse = await api.get('/me')
+            setUser(userInfoResponse.data)
+        } 
+        catch (error) {
             console.log(error)
             throw (error)
 
-        } finally {
+        } 
+        finally {
             setIsUserLoading(false)
 
         }
