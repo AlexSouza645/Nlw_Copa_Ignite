@@ -20,6 +20,7 @@ export function SignIn() {
                 mt={12}
                 onPress={signIn}
                 isLoading={isUserLoading}
+                _loading={{_spinner:{color:'white'}}}
 
             //O QUE DEVE ACONTECER QUANDO O BOTÃO FOR Clicado
             //botao de loadin
