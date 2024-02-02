@@ -3,9 +3,14 @@ import { Header } from "../components/Header";
 import Logo from "../assets/logo.svg"
 import { Input } from "../components/Input";
 import { Button } from "../components/button";
+import { useState } from "react";
 
 export function New() {
+    const [title, setTitle]= useState('')
+    async function handlePoolCreate() { 
 
+
+    }
     return (
         <VStack flex={1} bg="gray.900" >
 
@@ -17,13 +22,15 @@ export function New() {
                 </Heading>
 
                 <Input
-                    mb={2}  
+                    mb={2}
                     placeholder="Qual o nome do seu bolão?"
                 />
-
+ 
                 <Button
                     // type='SECONDARY'
-                    title="CRIAR MEU BOLÃO" />
+                    title="CRIAR MEU BOLÃO"  
+                    onPress={handlePoolCreate}/>
+                   
 
 
                 <Text color='gray.200' fontSize='sm' textAlign='center' px={10} mt={4}>
