@@ -63,6 +63,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
         // console.log('token de autenticação ===>', access_token)
         try {
             setIsUserLoading(true)
+<<<<<<< Updated upstream
             const tokenResponse = await api.post('/users', { access_token });
             // console.log(response.data)
             api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data.token}`
@@ -75,6 +76,15 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
 
         } 
         finally {
+=======
+            const response = await api.post('/users', { access_token: access_token })
+            console.log(response.data)
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        } finally {
+>>>>>>> Stashed changes
             setIsUserLoading(false)
 
         }
